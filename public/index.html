@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Choudhary Plastic Ponds - Premium Water Storage Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #2c3e50;
+      --text-secondary: #7f8c8d;
+      --primary-color: #00c853;
+      --primary-dark: #00a043;
+      --accent-color: #4CAF50;
+      --nav-bg: #1a1a1a;
+      --nav-link-hover: #2c2c2c;
+      --card-bg: #ffffff;
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      --border-color: #e0e0e0;
+      --gradient-primary: linear-gradient(135deg, #00c853 0%, #4CAF50 100%);
+      --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #0f1419;
+      --text-color: #ffffff;
+      --text-secondary: #b0bec5;
+      --nav-bg: #1c1c1c;
+      --nav-link-hover: #333333;
+      --card-bg: #1e2328;
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      --border-color: #333333;
+      --gradient-primary: linear-gradient(135deg, #00c853 0%, #4CAF50 100%);
+      --gradient-secondary: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: all 0.3s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Navigation Styles */
+    .nav-bar {
+      background: var(--nav-bg);
+      backdrop-filter: blur(10px);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(20px, 5vw);
+      height: 70px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo img {
+      height: 45px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover img {
+      transform: scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #312d2d;
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+
+    .nav-links a:hover::before {
+      left: 0;
+    }
+
+    .nav-links a:hover {
+    
+      transform: translateY(-2px);
+      color: white;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 20px;
+      background: transparent;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(180deg);
+    }
+
+    .cta-button {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 200, 83, 0.4);
+    }
+
+    .mobile-menu-icon {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+      background: none;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-icon:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(0, 200, 83, 0.9), rgba(92, 159, 94, 0.8)), 
+                  url('./images/pondliner.jpeg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(0, 200, 83, 0.1), rgba(76, 175, 80, 0.1));
+      animation: heroGradient 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroGradient {
+      0% { opacity: 0.3; }
+      100% { opacity: 0.7; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: white;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      margin-bottom: 30px;
+      color: white;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+      font-weight: 400;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-buttons .btn {
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 180px;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary-color);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    /* Slider Section */
+    .slider-section {
+      padding: 80px 20px;
+      background: var(--bg-color);
+    }
+
+    .slider-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      background: var(--card-bg);
+    }
+
+    .slider-wrapper {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8);
+      transition: all 0.3s ease;
+    }
+
+    .slide:hover img {
+      filter: brightness(1);
+      transform: scale(1.05);
+    }
+
+    .slide-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      color: white;
+      padding: 40px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .slide.active .slide-content {
+      transform: translateY(0);
+    }
+
+    .slide-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .slide-description {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    .slider-nav {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-dot.active {
+      background: white;
+      transform: scale(1.2);
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--primary-color);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slider-arrow:hover {
+      background: white;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .slider-arrow.prev {
+      left: 20px;
+    }
+
+    .slider-arrow.next {
+      right: 20px;
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 80px 20px;
+      background: var(--bg-color);
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 20px;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-description {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin: 0 auto 50px;
+      line-height: 1.8;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-color);
+    }
+
+    .feature-description {
+      color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Products Section */
+    .products-section {
+      padding: 80px 20px;
+      background: var(--bg-color);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 250px;
+      background: var(--gradient-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(0, 200, 83, 0.1), rgba(76, 175, 80, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .product-card:hover .product-image::before {
+      opacity: 1;
+    }
+
+    .product-content {
+      padding: 30px;
+    }
+
+    .product-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-color);
+    }
+
+    .product-description {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .product-features {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .product-features li {
+      padding: 5px 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .product-features li::before {
+      content: '✓';
+      color: var(--primary-color);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .product-price {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--nav-bg);
+        flex-direction: column;
+        padding: 20px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.show {
+        transform: translateX(0);
+      }
+
+      .mobile-menu-icon {
+        display: block;
+      }
+
+      .nav-actions {
+        gap: 10px;
+      }
+
+      .cta-button {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .slider-wrapper {
+        height: 300px;
+      }
+
+      .slider-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+
+      .slider-arrow.prev {
+        left: 10px;
+      }
+
+      .slider-arrow.next {
+        right: 10px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        padding: 30px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-bar {
+        padding: 0 15px;
+      }
+
+      .hero {
+        padding: 0 15px;
+      }
+
+      .slider-section,
+      .about-section,
+      .products-section {
+        padding: 60px 15px;
+      }
+
+      .nav-actions {
+        gap: 8px;
+      }
+
+      .theme-toggle {
+        padding: 8px;
+        font-size: 18px;
+      }
+    }
+
+    /* Loading Animation */
+    .loading {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .loading.loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scroll to Top Button */
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 1000;
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 200, 83, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav-bar">
+    <div class="logo">
+      <a href="/index"><img src="./images/logo.png"></a>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="/products">Products</a>
+      <a href="/about">About</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <button class="mobile-menu-icon" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav-actions">
+      <button class="theme-toggle" onclick="toggleTheme()" id="theme-icon">
+        <i class="fas fa-moon"></i>
+      </button>
+      <a href="https://wa.me/919460263524" class="cta-button">
+        <i class="fab fa-whatsapp"></i> Get Quote
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Durable, Eco-Friendly Plastic Ponds for Modern Farming</h1>
+      <p>Get long-lasting, cost-effective solutions for your water storage needs with our premium plastic pond systems.</p>
+      <div class="hero-buttons">
+        <a href="/contact" class="btn btn-primary">
+          <i class="fas fa-calendar-alt"></i> Book Free Demo
+        </a>
+        <a href="/products" class="btn btn-secondary">
+          <i class="fas fa-eye"></i> Explore Products
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Slider Section -->
+  <section class="slider-section" id="gallery">
+    <div class="slider-container">
+      <div class="slider-wrapper">
+        <div class="slide active">
+          <img src="./images/pondImg1.jpeg">
+          <div class="slide-content">
+            <h3 class="slide-title">Professional Installation</h3>
+            <p class="slide-description">Expert team ensures perfect pond installation with quality materials and precision.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="images/jkll.png">
+          <div class="slide-content">
+            <h3 class="slide-title">Durable Construction</h3>
+            <p class="slide-description">High-quality materials ensure long-lasting performance in all weather conditions.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="images/500micronpond.jpeg">
+          <div class="slide-content">
+            <h3 class="slide-title">Custom Solutions</h3>
+            <p class="slide-description">Tailored pond designs to meet your specific agricultural and farming needs.</p>
+          </div>
+        </div>
+      </div>
+      <button class="slider-arrow prev" onclick="changeSlide(-1)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="slider-arrow next" onclick="changeSlide(1)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="slider-nav">
+        <span class="nav-dot active" onclick="currentSlide(1)"></span>
+        <span class="nav-dot" onclick="currentSlide(2)"></span>
+        <span class="nav-dot" onclick="currentSlide(3)"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <h2 class="section-title">About Choudhary Plastic Ponds</h2>
+      <p class="section-description">
+        With over a decade of experience in modern water storage solutions, Choudhary Plastic Ponds has earned the trust of thousands of farmers across India. Our mission is to deliver high-quality, eco-friendly plastic ponds tailored for agriculture, fish farming, and rainwater harvesting.
+      </p>
+      
+      <div class="features-grid">
+        <div class="feature-card loading">
+          <span class="feature-icon">🎯</span>
+          <h4 class="feature-title">Our Vision</h4>
+          <p class="feature-description">Empowering sustainable farming with durable, recyclable plastic ponds that contribute to environmental conservation.</p>
+        </div>
+        <div class="feature-card loading">
+          <span class="feature-icon">✅</span>
+          <h4 class="feature-title">Certified Quality</h4>
+          <p class="feature-description">ISO 9001:2015 certified manufacturing process. Quality guaranteed for every product with comprehensive warranty.</p>
+        </div>
+        <div class="feature-card loading">
+          <span class="feature-icon">📍</span>
+          <h4 class="feature-title">Wide Coverage</h4>
+          <p class="feature-description">Serving across Punjab, Haryana, Rajasthan, and expanding to more states with dedicated support teams.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products-section" id="products">
+    <div class="about-container">
+      <h2 class="section-title">Our Premium Products</h2>
+      <p class="section-description">
+        Discover our range of high-quality plastic ponds designed for various applications and farming needs.
+      </p>
+      
+      <div class="products-grid">
+        <div class="product-card loading">
+          <div class="product-image">
+            <i class="fas fa-water"></i>
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Agriculture Pond</h3>
+            <p class="product-description">Perfect for crop irrigation and water storage on farms.</p>
+            <ul class="product-features">
+              <li>UV resistant material</li>
+              <li>10-year warranty</li>
+              <li>Easy installation</li>
+              <li>Multiple sizes available</li>
+            </ul>
+            <div class="product-price">Starting from ₹15,000</div>
+          </div>
+        </div>
+        
+        <div class="product-card loading">
+          <div class="product-image">
+            <i class="fas fa-fish"></i>
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Fish Farming Pond</h3>
+            <p class="product-description">Specially designed for aquaculture and fish farming.</p>
+            <ul class="product-features">
+              <li>Food-grade material</li>
+              <li>Anti-bacterial coating</li>
+              <li>Optimal depth design</li>
+              <li>Drainage system included</li>
+            </ul>
+            <div class="product-price">Starting from ₹25,000</div>
+          </div>
+        </div>
+        
+        <div class="product-card loading">
+          <div class="product-image">
+            <i class="fas fa-cloud-rain"></i>
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Rainwater Harvesting</h3>
+            <p class="product-description">Eco-friendly solution for rainwater collection and storage.</p>
+            <ul class="product-features">
+              <li>Large capacity options</li>
+              <li>Overflow management</li>
+              <li>Filtration system ready</li>
+              <li>Government approved</li>
+            </ul>
+            <div class="product-price">Starting from ₹20,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section" id="benefits">
+    <div class="about-container">
+      <h2 class="section-title">Why Choose Our Plastic Ponds?</h2>
+      <p class="section-description">
+        Discover the advantages that make our plastic ponds the preferred choice for modern farmers.
+      </p>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card loading">
+          <div class="benefit-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3 class="benefit-title">Eco-Friendly</h3>
+          <p class="benefit-description">100% recyclable materials that contribute to environmental sustainability.</p>
+        </div>
+        
+        <div class="benefit-card loading">
+          <div class="benefit-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="benefit-title">Durable & Long-lasting</h3>
+          <p class="benefit-description">UV-resistant materials ensure 15+ years of reliable performance.</p>
+        </div>
+        
+        <div class="benefit-card loading">
+          <div class="benefit-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3 class="benefit-title">Easy Installation</h3>
+          <p class="benefit-description">Quick setup with professional installation support included.</p>
+        </div>
+        
+        <div class="benefit-card loading">
+          <div class="benefit-icon">
+            <i class="fas fa-rupee-sign"></i>
+          </div>
+          <h3 class="benefit-title">Cost-Effective</h3>
+          <p class="benefit-description">Lower maintenance costs compared to traditional concrete ponds.</p>
+        </div>
+        
+        <div class="benefit-card loading">
+          <div class="benefit-icon">
+            <i class="fas fa-water"></i>
+          </div>
+          <h3 class="benefit-title">Water Conservation</h3>
+          <p class="benefit-description">Superior water retention with minimal seepage and evaporation.</p>
+        </div>
+        
+        <div class="benefit-card loading">
+          <div class="benefit-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 class="benefit-title">24/7 Support</h3>
+          <p class="benefit-description">Round-the-clock customer support and maintenance services.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="contact-container">
+      <div class="contact-content">
+        <h2 class="section-title">Get Your Free Quote Today</h2>
+        <p class="section-description">
+          Ready to transform your farming with our premium plastic ponds? Contact us for a personalized consultation.
+        </p>
+        
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h4>Call Us</h4>
+              <p>+91 940263524</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email Us</h4>
+              <p>choudharyconstruction94@gmail.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Visit Us</h4>
+              <p>Raisinghnagar,Rajasthan,India</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-actions">
+          <a href="https://wa.me/919460263524" class="cta-button">
+            <i class="fab fa-whatsapp"></i> WhatsApp Chat
+          </a>
+          <a href="tel:+919460243524" class="cta-button">
+            <i class="fas fa-phone"></i> Call Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Choudhary Plastic Ponds</h3>
+        <p>Leading manufacturer of premium plastic ponds for sustainable farming solutions.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#">Agriculture Ponds</a></li>
+          <li><a href="#">Fish Farming</a></li>
+          <li><a href="#">Rainwater Harvesting</a></li>
+          <li><a href="#">Custom Solutions</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact Info</h4>
+        <ul>
+          <li><i class="fas fa-phone"></i> +91 9460263524</li>
+          <li><i class="fas fa-envelope"></i> choudharyconstruction94@gmail.com</li>
+          <li><i class="fas fa-map-marker-alt"></i> Raisinghnagar,Rajasthan,India</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Choudhary Plastic Ponds. All rights reserved. | ISO 9001:2015 Certified</p>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script>
+    // Slider Functionality
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.nav-dot');
+    
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+    
+    function changeSlide(direction) {
+      currentSlideIndex += direction;
+      if (currentSlideIndex >= slides.length) currentSlideIndex = 0;
+      if (currentSlideIndex < 0) currentSlideIndex = slides.length - 1;
+      showSlide(currentSlideIndex);
+    }
+    
+    function currentSlide(index) {
+      currentSlideIndex = index - 1;
+      showSlide(currentSlideIndex);
+    }
+    
+    // Auto-advance slides
+    setInterval(() => {
+      changeSlide(1);
+    }, 5000);
+    
+    // Theme Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById("theme-icon");
+      const isLight = html.dataset.theme === "light";
+      
+      html.dataset.theme = isLight ? "dark" : "light";
+      localStorage.setItem("theme", html.dataset.theme);
+      icon.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+    
+    // Mobile Menu Toggle
+    function toggleMenu() {
+      const nav = document.getElementById("navLinks");
+      nav.classList.toggle("show");
+    }
+    
+    // Scroll to Top
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Show/Hide Scroll to Top Button
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.getElementById('scrollTop');
+      if (window.pageYOffset > 300) {
+        scrollTop.classList.add('show');
+      } else {
+        scrollTop.classList.remove('show');
+      }
+    });
+    
+    // Loading Animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('loaded');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.loading').forEach(el => {
+      observer.observe(el);
+    });
+    
+    // Initialize Theme
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      document.documentElement.dataset.theme = savedTheme;
+      const icon = document.getElementById("theme-icon");
+      icon.innerHTML = savedTheme === "light" ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    });
+    
+    // Smooth Scrolling for Navigation Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const nav = document.getElementById("navLinks");
+      const menuIcon = document.querySelector('.mobile-menu-icon');
+      
+      if (!nav.contains(e.target) && !menuIcon.contains(e.target)) {
+        nav.classList.remove("show");
+      }
+    });
+    
+    // Lazy Loading Images
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.remove('lazy');
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+      
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
+  </script>
+
+  <style>
+    /* Additional Styles for New Sections */
+    .benefits-section {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, var(--bg-color) 0%, rgba(0, 200, 83, 0.02) 100%);
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .benefit-card {
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    
+    .benefit-card:hover::before {
+      width: 100%;
+    }
+    
+    .benefit-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    }
+    
+    .benefit-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .benefit-card:hover .benefit-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .benefit-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-color);
+    }
+    
+    .benefit-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    
+    .contact-section {
+      padding: 80px 20px;
+      background: var(--gradient-primary);
+      color: white;
+    }
+    
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .contact-section .section-title {
+      color: white;
+      background: none;
+      -webkit-text-fill-color: white;
+    }
+    
+    .contact-section .section-description {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 40px;
+    }
+    
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 50px 0;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .contact-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-5px);
+    }
+    
+    .contact-item i {
+      font-size: 24px;
+      color: white;
+    }
+    
+    .contact-item h4 {
+      margin: 0 0 5px 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .contact-item p {
+      margin: 0;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    
+    .contact-actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .contact-actions .cta-button {
+      background: white;
+      color: var(--primary-color);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    }
+    
+    .contact-actions .cta-button:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateY(-2px);
+    }
+    
+    .footer {
+      background: var(--nav-bg);
+      color: white;
+      padding: 60px 20px 20px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+    
+    .footer-section h3,
+    .footer-section h4 {
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .footer-section p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-section ul li a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--primary-color);
+    }
+    
+    .footer-section ul li i {
+      margin-right: 10px;
+      color: var(--primary-color);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    @media (max-width: 768px) {
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-info {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .contact-actions .cta-button {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+  </style>
+</body>
+</html>

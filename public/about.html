@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --primary-color: #00c853;
+            --secondary-color: #4caf50;
+            --nav-bg: #0f1111;
+            --nav-link-hover: #1a1a1a;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+            --primary: #00c853;
+            --primary-dark: #00a647;
+            --secondary: #667eea;
+            --form-bg: #ffffff;
+            --form-border: #e2e8f0;
+            --form-input-bg: #ffffff;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+            --gradient-primary: linear-gradient(135deg, #00c853 0%, #00a647 100%);
+            --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #f4f4f4;
+            --nav-bg: #1c1c1c;
+            --nav-link-hover: #333;
+            --card-bg: #1e1e1e;
+            --shadow: 0 4px 20px rgba(255,255,255,0.1);
+            --form-bg: #1e1e1e;
+            --form-border: #334155;
+            --form-input-bg: #334155;
+            --shadow-light: rgba(255, 255, 255, 0.1);
+            --shadow-medium: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background-color: var(--nav-bg);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--nav-link-hover);
+            transform: translateY(-2px);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--nav-link-hover);
+            transform: rotate(180deg);
+        }
+
+        .mobile-menu {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .mobile-menu:hover {
+            background-color: var(--nav-link-hover);
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            background-color: var(--nav-bg);
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            z-index: 99;
+            box-shadow: var(--shadow);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            transform: translateY(0);
+        }
+
+        .mobile-nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--nav-link-hover);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            background-color: var(--nav-link-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Owner Section */
+   /* Owner Section */
+.owner-section {
+    background: var(--form-bg);
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px var(--shadow-light);
+    margin-bottom: 4rem;
+    border: 1px solid var(--form-border);
+}
+
+.owner-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.owner-image {
+    text-align: center;
+}
+
+.owner-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 10px 30px var(--shadow-medium);
+    border: 4px solid var(--primary-color);
+}
+
+/* Remove this if not using placeholder anymore */
+.owner-placeholder {
+    display: none;
+}
+
+.owner-info h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.owner-info p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+
+        /* Company Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .info-card {
+            background: var(--form-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            border: 1px solid var(--form-border);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow-medium);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .info-card p {
+            margin-bottom: 1rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--form-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            border: 1px solid var(--form-border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow-medium);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+       /* GST Section */
+.gst-section {
+    background: var(--form-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px var(--shadow-light);
+    border: 1px solid var(--form-border);
+    text-align: center;
+}
+
+.gst-image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.gst-image-card {
+    max-width: 300px;
+    width: 100%;
+    text-align: center;
+}
+
+.gst-image-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 20px var(--shadow-light);
+    border: 2px solid var(--primary-color);
+}
+
+.gst-image-card p {
+    margin-top: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Optional: Hide old placeholder */
+.gst-placeholder {
+    display: none;
+}
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .owner-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .owner-image {
+                margin-bottom: 2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .nav-bar {
+                padding: 0 15px;
+            }
+        }
+         .footer {
+      background: var(--nav-bg);
+      color: white;
+      padding: 60px 20px 20px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+    
+    .footer-section h3,
+    .footer-section h4 {
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .footer-section p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-section ul li a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--primary-color);
+    }
+    
+    .footer-section ul li i {
+      margin-right: 10px;
+      color: var(--primary-color);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    @media (max-width: 768px) {
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-info {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .contact-actions .cta-button {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="logo">
+            <a href="/index"><img src="./images/logo.png" alt="Choudhary Construction Logo"/></a>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="/index">Home</a>
+            <a href="/products">Products</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" id="theme-icon">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="mobile-menu" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="https://wa.me/919460263524" class="cta-button">Get Quote</a>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="/index">Home</a>
+        <a href="/products">Products</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>About Choudhary Construction</h1>
+            <p>Building Excellence with Quality Materials and Expert Craftsmanship</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Owner Section -->
+      <section class="section">
+    <h2 class="section-title">Meet Our Owner</h2>
+    <div class="owner-section">
+        <div class="owner-content">
+            <div class="owner-image">
+                <img src="/images/owner.jpeg" alt="Mr. Ramesh Kumar Khileri" />
+            </div>
+            <div class="owner-info">
+                <h3>Mr. Ramesh Kumar Khileri</h3>
+                <p><strong>Founder & Owner</strong></p>
+                <p>With years of experience in the construction and building materials industry, Mr. Ramesh Kumar Khileri has established Choudhary Construction as a trusted name in quality construction services and premium building materials.</p>
+                <p>His vision is to provide exceptional construction solutions while maintaining the highest standards of quality and customer satisfaction. Under his leadership, the company has grown to become a reliable partner for both residential and commercial projects.</p>
+                <p>Mr. Khileri brings expertise in modern construction techniques, sustainable building practices, and innovative material solutions to every project.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <!-- Company Information -->
+        <section class="section">
+            <h2 class="section-title">Company Information</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Our Mission</h3>
+                    <p>To provide high-quality construction services and premium building materials that exceed customer expectations while maintaining competitive pricing and timely delivery.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Our Vision</h3>
+                    <p>To be the leading construction and building materials company in the region, known for innovation, quality, and customer satisfaction.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Our Values</h3>
+                    <p>Quality, Integrity, Innovation, Customer Focus, and Environmental Responsibility drive everything we do.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GST Authority -->
+<section class="section">
+    <h2 class="section-title">GST Registration</h2>
+    <div class="gst-section">
+        <h3>GST Registered Business</h3>
+        <p>Choudhary Construction & Building Material is a GST registered company, ensuring complete compliance with tax regulations and providing customers with proper documentation for all transactions.</p>
+
+        <div class="gst-image-grid">
+            <div class="gst-image-card">
+                <img src="/images/gst.png" alt="GST Number Certificate">
+                <p>GST Number Certificate</p>
+            </div>
+            <div class="gst-image-card">
+                <img src="/images/authority.jpeg" alt="GST Authority Letter">
+                <p>GST Authority Letter</p>
+            </div>
+            <div class="gst-image-card">
+                <img src="/images/shop.jpeg" alt="Shop Image">
+                <p>Shop Front Image</p>
+            </div>
+        </div>
+
+        <p style="margin-top: 1rem; font-style: italic;">Official GST documents and shop verification photos</p>
+    </div>
+</section>
+
+
+        <!-- Services Section -->
+        <section class="section">
+            <h2 class="section-title">Our Specialization</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🏊 Plastic Pond Construction</h3>
+                    <p>We specialize in high-quality plastic pond construction using advanced multi-layer technology for maximum durability and longevity.</p>
+                    <ul class="service-features">
+                        <li>500 Micron thickness options</li>
+                        <li>300 Micron for medium-duty applications</li>
+                        <li>Premium 7-layer construction</li>
+                        <li>UV-resistant materials</li>
+                        <li>Leak-proof guarantee</li>
+                        <li>Professional installation</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🏗️ Construction Services</h3>
+                    <p>Complete construction solutions for residential and commercial projects with a focus on quality and timely delivery.</p>
+                    <ul class="service-features">
+                        <li>Residential construction</li>
+                        <li>Commercial buildings</li>
+                        <li>Renovation projects</li>
+                        <li>Structural work</li>
+                        <li>Interior finishing</li>
+                        <li>Project management</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🧱 Building Materials</h3>
+                    <p>Premium quality building materials sourced from trusted manufacturers to ensure the best results for your projects.</p>
+                    <ul class="service-features">
+                        <li>Cement and concrete</li>
+                        <li>Steel and reinforcement</li>
+                        <li>Plastic sheets and linings</li>
+                        <li>Waterproofing materials</li>
+                        <li>Finishing materials</li>
+                        <li>Bulk supply available</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="section">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Quality Assurance</h3>
+                    <p>We use only the finest materials and employ skilled craftsmen to ensure every project meets the highest standards of quality.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Competitive Pricing</h3>
+                    <p>Our direct relationships with suppliers and efficient operations allow us to offer competitive pricing without compromising on quality.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Expert Team</h3>
+                    <p>Our experienced team of professionals brings years of expertise to every project, ensuring successful completion on time and within budget.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Customer Satisfaction</h3>
+                    <p>We prioritize customer satisfaction and work closely with clients to understand their needs and exceed their expectations.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Choudhary Plastic Ponds</h3>
+        <p>Leading manufacturer of premium plastic ponds for sustainable farming solutions.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#">Agriculture Ponds</a></li>
+          <li><a href="#">Fish Farming</a></li>
+          <li><a href="#">Rainwater Harvesting</a></li>
+          <li><a href="#">Custom Solutions</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact Info</h4>
+        <ul>
+          <li><i class="fas fa-phone"></i> +91 9460263524</li>
+          <li><i class="fas fa-envelope"></i> choudharyconstruction94@gmail.com</li>
+          <li><i class="fas fa-map-marker-alt"></i> Raisinghnagar,Rajasthan,India</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Choudhary Plastic Ponds. All rights reserved. | ISO 9001:2015 Certified</p>
+    </div>
+  </footer>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.info-card, .service-card, .owner-section').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

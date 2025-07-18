@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Now - Choudhary Plastic Ponds</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"/>
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --text-color: #1e293b;
+      --primary-color: #00c853;
+      --primary-hover: #00a846;
+      --secondary-color: #3b82f6;
+      --nav-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --nav-link-hover: rgba(255, 255, 255, 0.1);
+      --form-bg: #ffffff;
+      --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --gradient-primary: linear-gradient(135deg, #00c853 0%, #4caf50 100%);
+      --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #0f172a;
+      --text-color: #f1f5f9;
+      --nav-bg: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+      --nav-link-hover: rgba(255, 255, 255, 0.15);
+      --form-bg: #1e293b;
+      --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      transition: all 0.3s ease;
+    }
+
+    /* Modern Navigation */
+    .nav-bar {
+      background: var(--nav-bg);
+      backdrop-filter: blur(10px);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      height: 80px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo img {
+      height: 50px;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .nav-links a:hover::before {
+      left: 100%;
+    }
+
+    .nav-links a:hover {
+      background: var(--nav-link-hover);
+      transform: translateY(-2px);
+    }
+
+    .theme-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 12px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    .cta-button {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 200, 83, 0.4);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><path d="M0,0 L1000,0 L1000,100 C900,50 800,80 700,60 C600,40 500,70 400,50 C300,30 200,60 100,40 C50,30 25,35 0,40 Z"/></svg>');
+      background-size: cover;
+      background-position: bottom;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-section p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Order Section */
+    .order-section {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      position: relative;
+    }
+
+    .order-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+
+    .order-section h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .form-container {
+      background: var(--form-bg);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      font-size: 16px;
+      background-color: transparent;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    [data-theme="dark"] input,
+    [data-theme="dark"] textarea,
+    [data-theme="dark"] select {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.1);
+      transform: translateY(-2px);
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 200, 83, 0.4);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    #order-message {
+      margin-top: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile Navigation */
+    .mobile-menu-icon {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-icon:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--nav-bg);
+      color: white;
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+      margin-top: 5rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--primary-color);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      opacity: 0.8;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-bar {
+        padding: 0 1rem;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--nav-bg);
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        padding: 1rem 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .mobile-menu-icon {
+        display: block;
+      }
+
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+
+      .order-section {
+        padding: 3rem 1rem;
+      }
+
+      .form-container {
+        padding: 2rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-container {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    /* Override intl-tel-input styles for dark theme */
+    [data-theme="dark"] .iti__country-list {
+      background-color: #334155 !important;
+      color: white !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+
+    [data-theme="dark"] .iti__country:hover {
+      background-color: #475569 !important;
+    }
+
+    [data-theme="dark"] .iti__selected-flag {
+      background-color: transparent !important;
+    }
+
+    /* Loading animation for submit button */
+    .submit-btn.loading {
+      position: relative;
+      color: transparent;
+    }
+
+    .submit-btn.loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      border: 2px solid transparent;
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav-bar">
+    <div class="logo">
+      <a href="/index"><img src="./images/logo.png" alt="Logo"></a>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="/index">Home</a>
+      <a href="/products">Products</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div class="mobile-menu-icon" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <button class="theme-toggle" onclick="toggleTheme()" id="theme-icon">
+        <i class="fas fa-moon"></i>
+      </button>
+      <a href="https://wa.me/919876543210" class="cta-button">
+        <i class="fab fa-whatsapp"></i> Get Quote
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Place Your Order</h1>
+      <p>Get premium quality plastic ponds delivered to your doorstep. Fill out the form below to place your order.</p>
+    </div>
+  </section>
+
+  <!-- Order Section -->
+  <section class="order-section">
+    <h2>Order Details</h2>
+    <div class="form-container">
+      <form id="orderForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+
+          <div class="form-group">
+            <label for="product">Product Type</label>
+            <select id="product" name="product" required>
+              <option value="">-- Select Product --</option>
+              <option value="Circular Pond">300-Microne</option>
+              <option value="Square Pond">500-Microne</option>
+              <option value="Custom Pond">500-Microne(7-layer)
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="size">Preferred Size</label>
+            <input type="text" id="size" name="size" placeholder="e.g., 15ft diameter or 10x10ft" required />
+          </div>
+
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" min="1" required />
+          </div>
+
+          <div class="form-group full-width">
+            <label for="address">Delivery Address</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+          </div>
+
+          <div class="form-group full-width">
+            <button type="submit" class="submit-btn">Submit Order</button>
+          </div>
+        </div>
+      </form>
+      <div id="order-message"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Choudhary Plastic Ponds</h3>
+        <p>Premium quality plastic ponds for all your aquaculture needs.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="https://wa.me/919460243524"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="/index">Home</a></p>
+        <p><a href="/products">Products</a></p>
+        <p><a href="/contact">Contact</a></p>
+        <p><a href="/order">Order Now</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-phone"></i> +91 9460263524</p>
+        <p><i class="fas fa-envelope"></i> choudharyconstruction94@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Raisinghnagar,Rajasthan, India</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Choudhary Plastic Ponds. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById("theme-icon");
+      const isLight = html.dataset.theme === "light";
+      html.dataset.theme = isLight ? "dark" : "light";
+      localStorage.setItem("theme", html.dataset.theme);
+      icon.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      document.documentElement.dataset.theme = savedTheme;
+      document.getElementById("theme-icon").innerHTML = savedTheme === "light"
+        ? '<i class="fas fa-moon"></i>'
+        : '<i class="fas fa-sun"></i>';
+
+      const phoneInput = document.querySelector("#phone");
+      const iti = window.intlTelInput(phoneInput, {
+        initialCountry: "in",
+        preferredCountries: ["in", "us", "gb", "ae"],
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+      });
+
+      document.getElementById('orderForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const form = e.target;
+        const submitBtn = form.querySelector('.submit-btn');
+        const msgElement = document.getElementById('order-message');
+
+        // Add loading state
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+
+        if (!iti.isValidNumber()) {
+          msgElement.innerText = "❌ Invalid phone number.";
+          msgElement.style.color = "red";
+          msgElement.style.background = "rgba(255, 0, 0, 0.1)";
+          submitBtn.classList.remove('loading');
+          submitBtn.disabled = false;
+          return;
+        }
+
+        const data = Object.fromEntries(new FormData(form).entries());
+        data.phone = iti.getNumber();
+
+        try {
+          const response = await fetch('/api/order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          const result = await response.json();
+          msgElement.style.color = result.success ? '#00c853' : '#f44336';
+          msgElement.style.background = result.success ? 'rgba(0, 200, 83, 0.1)' : 'rgba(244, 67, 54, 0.1)';
+          msgElement.innerText = result.success ? '✅ ' + result.message : '❌ ' + result.message;
+          
+          if (result.success) {
+            form.reset();
+            iti.setNumber("");
+          }
+        } catch (error) {
+          msgElement.style.color = '#f44336';
+          msgElement.style.background = 'rgba(244, 67, 54, 0.1)';
+          msgElement.innerText = '❌ Network error. Please try again.';
+        } finally {
+          submitBtn.classList.remove('loading');
+          submitBtn.disabled = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

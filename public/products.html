@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products - Choudhary Plastic Ponds</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --text-color: #333;
+      --primary-color: #00c853;
+      --secondary-color: #4caf50;
+      --nav-bg: #0f1111;
+      --nav-link-hover: #1a1a1a;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 20px rgba(0,0,0,0.1);
+      --border-radius: 12px;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #f4f4f4;
+      --nav-bg: #1c1c1c;
+      --nav-link-hover: #333;
+      --card-bg: #1e1e1e;
+      --shadow: 0 4px 20px rgba(255,255,255,0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+
+    .nav-bar {
+      background-color: var(--nav-bg);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 70px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo img {
+      height: 40px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      background-color: var(--nav-link-hover);
+      transform: translateY(-2px);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--nav-link-hover);
+      transform: rotate(180deg);
+    }
+
+    .cta-button {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,200,83,0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,200,83,0.4);
+    }
+
+    .products-section {
+      padding: 60px 20px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 50px;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .product-list, .product-detail {
+      display: none;
+    }
+
+    .product-list.active, .product-detail.active {
+      display: block;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 25px;
+    }
+
+    .product-info h4 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-color);
+    }
+
+    .product-info p {
+      margin-bottom: 8px;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    .product-info strong {
+      color: var(--primary-color);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--primary-color);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .product-detail-content {
+      max-width: 900px;
+      margin: auto;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .product-detail-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .product-media {
+      position: relative;
+    }
+
+    .product-detail img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      margin-bottom: 20px;
+    }
+
+    .product-detail video {
+      width: 100%;
+      height: 300px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .product-detail-info h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+
+    .product-detail-info p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .product-specs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .spec-card {
+      background: var(--bg-color);
+      padding: 20px;
+      border-radius: var(--border-radius);
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .spec-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .spec-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .spec-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .spec-list li:last-child {
+      border-bottom: none;
+    }
+
+    .spec-list li::before {
+      content: '✓';
+      color: var(--primary-color);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .detail-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .detail-buttons a, .detail-buttons button {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,200,83,0.3);
+      font-size: 1rem;
+    }
+
+    .detail-buttons button {
+      background: linear-gradient(45deg, #666, #888);
+    }
+
+    .detail-buttons a:hover, .detail-buttons button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,200,83,0.4);
+    }
+
+    .mobile-menu {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: var(--nav-bg);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      z-index: 99;
+    }
+
+    .mobile-nav.active {
+      display: block;
+    }
+
+    .mobile-nav a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .nav-actions {
+        gap: 10px;
+      }
+
+      .cta-button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .product-detail-content {
+        padding: 20px;
+        margin: 10px;
+      }
+
+      .product-detail-header {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .product-detail img, .product-detail video {
+        height: 250px;
+      }
+
+      .product-detail-info h2 {
+        font-size: 1.5rem;
+      }
+
+      .price {
+        font-size: 1.5rem;
+      }
+
+      .product-specs {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .detail-buttons {
+        flex-direction: column;
+      }
+
+      .detail-buttons a, .detail-buttons button {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-section {
+        padding: 30px 10px;
+      }
+
+      .product-card {
+        margin: 0 5px;
+      }
+
+      .product-detail-content {
+        margin: 5px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="nav-bar">
+    <div class="logo">
+      <a href="/index"><img src="./images/logo.png" alt="Logo"/></a>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="/index" data-translate="nav_home">Home</a>
+      <a href="/products" data-translate="nav_products">Products</a>
+      <a href="/about" data-translate="nav_about">About</a>
+      <a href="/contact" data-translate="nav_contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" onclick="toggleTheme()" id="theme-icon">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="mobile-menu" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <a href="https://wa.me/919460243524" class="cta-button" data-translate="get_quote">Get Quote</a>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/index" data-translate="nav_home">Home</a>
+    <a href="/products" data-translate="nav_products">Products</a>
+    <a href="/contact" data-translate="nav_contact">Contact</a>
+  </div>
+
+  <section class="products-section">
+    <!-- Product List -->
+    <div class="product-list active" id="productList">
+      <h2 class="section-title" data-translate="products_title">Our Plastic Pond Liner Products (Kohinoor Brand)& JK Lakshmi Cement</h2>
+      <div class="product-grid" id="productGrid">
+        <!-- Products will be dynamically loaded here -->
+      </div>
+    </div>
+
+    <!-- Product Detail -->
+    <div class="product-detail" id="productDetail">
+      <div class="product-detail-content">
+        <div class="product-detail-header">
+          <div class="product-media">
+            <img id="detailImage" src="" alt="Product">
+            <video id="detailVideo" controls style="display:none;"></video>
+          </div>
+          <div class="product-detail-info">
+            <h2 id="detailTitle"></h2>
+            <p id="detailDesc"></p>
+            <div class="price" id="detailPrice"></div>
+          </div>
+        </div>
+        
+        <div class="product-specs" id="productSpecs">
+          <!-- Specifications will be dynamically loaded here -->
+        </div>
+
+        <div class="detail-buttons">
+          <a href="/order" data-translate="order_now">Order Now</a>
+          <button onclick="goBack()" data-translate="back_button">← Back</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Product data
+    const products = [
+      {
+        title: "300 Micron Plastic Pond Liner (Single Layer)",
+        brand: "Kohinoor",
+        image: "/images/300micron.jpg",
+        video: "/images/video.mp4",
+        thickness: "300 microns (0.3 mm)",
+        material: "LDPE (Low-Density Polyethylene) or HDPE",
+        uvStabilized: "Optional",
+        waterproof: "Yes",
+        lifespan: "2–3 years (under regular outdoor usage)",
+        color: "Black (standard), others on request",
+        applications: [
+          "Small farm ponds",
+          "Nursery beds",
+          "Small-scale aquaculture",
+          "Temporary water storage"
+        ],
+        advantages: [
+          "Lightweight and affordable",
+          "Easy to handle and install",
+          "Suitable for short-term use"
+        ],
+        desc: "An economical pond liner made from LDPE or HDPE. Suitable for temporary and small-scale water storage. Can be UV stabilized upon request.",
+        price: "₹3.50 / sq. ft"
+      },
+      {
+        title: "500 Micron Plastic Pond Liner (Single Layer)",
+        brand: "Kohinoor",
+        image: "/images/500micron.jpeg",
+        video: "/images/video.mp4",
+        thickness: "500 microns (0.5 mm)",
+        material: "HDPE or LLDPE (Linear Low-Density Polyethylene)",
+        uvStabilized: "Yes",
+        waterproof: "Yes",
+        lifespan: "5–7 years (with proper installation)",
+        color: "Black or Blue-Black",
+        applications: [
+          "Medium to large farm ponds",
+          "Fish farming (aquaculture)",
+          "Rainwater harvesting",
+          "Irrigation water storage"
+        ],
+        advantages: [
+          "Higher durability",
+          "UV and weather resistant",
+          "Better puncture resistance than 300 microns",
+          "Ideal for medium to long-term use"
+        ],
+        desc: "Durable and UV-stabilized pond liner made for larger ponds and medium-term use. Offers better resistance to outdoor conditions.",
+        price: "₹6.50 / sq. ft"
+      },
+      {
+        title: "500 Micron Pond Liner with 5-Layer Technology",
+        brand: "Kohinoor",
+        image: "/images/500mironone.jpeg",
+        video: "/images/video.mp4",
+        thickness: "500 microns (0.5 mm)",
+        material: "Multi-layered LLDPE with special additives",
+        layerStructure: "5-layer co-extrusion with UV-resistant outer layers and strong flexible inner layers",
+        uvStabilized: "Advanced UV protection",
+        waterproof: "Yes",
+        lifespan: "7–10 years (or more depending on usage)",
+        tensileStrength: "Very high",
+        flexibility: "Excellent",
+        color: "Black",
+        applications: [
+          "Long-term farm ponds",
+          "Commercial aquaculture or biofloc systems",
+          "Industrial liquid storage",
+          "High-temperature or chemical exposure areas"
+        ],
+        advantages: [
+          "Enhanced strength and durability",
+          "Superior resistance to tearing and puncture",
+          "Best for long-term and harsh condition usage",
+          "Often ISI certified or BIS approved"
+        ],
+        desc: "Top-grade pond liner with advanced 5-layer structure for maximum durability and protection. Ideal for commercial and industrial use.",
+        price: "₹8.50 / sq. ft"
+      },
+      {
+  title: "JK Lakshmi PRO+ Cement (53 Grade OPC)",
+  brand: "JK Lakshmi Cement",
+  image: "/images/procement.png",
+  // video: "/videos/jk-lakshmi-proplus.mp4", // Ensure this video exists in your public folder
+  thickness: "N/A (Cement powder)",
+  material: "Ordinary Portland Cement (OPC) – 53 Grade",
+  uvStabilized: "N/A",
+  waterproof: "Provides superior water resistance when cured",
+  lifespan: "Over 50 years (structure dependent)",
+  color: "Grey",
+  applications: [
+    "High-rise buildings",
+    "Bridges and dams",
+    "Industrial foundations",
+    "Roads and flyovers",
+    "Precast concrete products"
+  ],
+  advantages: [
+    "High early strength for faster construction",
+    "Superior bonding with steel and bricks",
+    "Low shrinkage and cracking",
+    "Best suited for RCC (Reinforced Cement Concrete) work",
+    "Excellent durability and finish"
+  ],
+  desc: "JK Lakshmi PRO+ Cement is a premium 53 Grade OPC cement engineered for high-strength, load-bearing structures. It offers rapid setting, superior bonding, and lasting durability for critical construction needs.",
+  price: "₹360 / 50kg bag (approx.)"
+},
+{
+  title: "JK Lakshmi Cement (43 Grade OPC)",
+  brand: "JK Lakshmi Cement",
+  image: "/images/43grade.jpg", // Replace with actual image path
+  //video: "/videos/jk-lakshmi-43grade.mp4", // Optional: replace with actual video or remove if not available
+  thickness: "N/A (Cement powder)",
+  material: "Ordinary Portland Cement (OPC) – 43 Grade",
+  uvStabilized: "N/A",
+  waterproof: "Provides good water resistance after curing",
+  lifespan: "40–50 years (structure dependent)",
+  color: "Grey",
+  applications: [
+    "Residential construction",
+    "Masonry and plastering",
+    "Pavement and flooring work",
+    "General RCC work",
+    "Non-structural elements"
+  ],
+  advantages: [
+    "Consistent strength development",
+    "Smooth finish for plastering",
+    "Low heat of hydration (reduces cracks)",
+    "Longer setting time allows better workability",
+    "Economical for non-critical construction"
+  ],
+  desc: "JK Lakshmi 43 Grade OPC Cement is ideal for general construction work, offering reliable strength, smooth finish, and better workability. It is best suited for masonry, plastering, and low-rise buildings.",
+  price: "₹330 / 50kg bag (approx.)"
+},
+{
+  title: "JK Lakshmi Cement (43 Grade OPC – Non-Trade)",
+  brand: "JK Lakshmi Cement",
+  image: "/images/nontrade.jpg", // Replace with actual image path
+ // video: "/videos/jk-lakshmi-43-nontrade.mp4", // Optional
+  thickness: "N/A (Powder form)",
+  material: "Ordinary Portland Cement (OPC) – 43 Grade",
+  uvStabilized: "N/A",
+  waterproof: "Becomes water-resistant after curing",
+  lifespan: "40–50 years (structure dependent)",
+  color: "Grey",
+  applications: [
+    "Government infrastructure projects",
+    "Bulk RCC casting",
+    "Flyovers, roads, and irrigation channels",
+    "Institutional & industrial construction",
+    "Bridges, culverts, and public utilities"
+  ],
+  advantages: [
+    "Bulk pricing – cost-effective for projects",
+    "Uniform quality certified by BIS",
+    "Consistent strength performance",
+    "Good workability for mass concrete work",
+    "Lower heat of hydration reduces cracking"
+  ],
+  desc: "JK Lakshmi 43 Grade OPC (Non-Trade) Cement is supplied in bulk for institutional or government projects. Known for reliable strength and smooth finish, it's ideal for large-scale constructions requiring certified quality and consistency.",
+  price: "₹295 – ₹310 / 50kg bag (bulk rate, approx.)"
+}
+
+
+    ];
+     
+    // Initialize page
+    document.addEventListener("DOMContentLoaded", () => {
+      loadTheme();
+      loadProducts();
+    });
+
+    function loadProducts() {
+      const productGrid = document.getElementById('productGrid');
+      productGrid.innerHTML = '';
+      
+      products.forEach((product, index) => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.onclick = () => showProductDetail(index);
+        
+        productCard.innerHTML = `
+        
+          <img src="${product.image}" alt="${product.title}">
+          <div class="product-info">
+            <h4>${product.title}</h4>
+            <p><strong data-translate="material">Material:</strong> ${product.material}</p>
+            <p><strong data-translate="thickness">Thickness:</strong> ${product.thickness}</p>
+            <p><strong data-translate="lifespan">Lifespan:</strong> ${product.lifespan}</p>
+            <p><strong data-translate="price">Price:</strong> ${product.price}</p>
+          </div>
+        `;
+        
+        productGrid.appendChild(productCard);
+      });
+    }
+
+    function showProductDetail(index) {
+      const product = products[index];
+      
+      // Update basic info
+      document.getElementById('detailTitle').textContent = product.title;
+      document.getElementById('detailImage').src = product.image;
+      // document.getElementById('detailVideo').src = product.video;
+      // document.getElementById('detailVideo').style.display = "block";
+      const detailVideo = document.getElementById('detailVideo');
+
+if (product.video) {
+  detailVideo.src = product.video;
+  detailVideo.style.display = "block";
+} else {
+  detailVideo.src = "";
+  detailVideo.style.display = "none"; // Hide the video if not available
+}
+
+      document.getElementById('detailDesc').textContent = product.desc;
+      document.getElementById('detailPrice').textContent = product.price;
+
+
+
+
+      // Update specifications
+      const specsContainer = document.getElementById('productSpecs');
+      specsContainer.innerHTML = '';
+
+      // Basic specifications
+      const basicSpecs = document.createElement('div');
+      basicSpecs.className = 'spec-card';
+      basicSpecs.innerHTML = `
+        <h4 data-translate="material">Material & Specifications</h4>
+        <ul class="spec-list">
+          <li><strong data-translate="brand">Brand:</strong> ${product.brand}</li>
+          <li><strong data-translate="material">Material:</strong> ${product.material}</li>
+          <li><strong data-translate="thickness">Thickness:</strong> ${product.thickness}</li>
+          <li><strong data-translate="lifespan">Lifespan:</strong> ${product.lifespan}</li>
+          <li><strong data-translate="uv_stabilized">UV Stabilized:</strong> ${product.uvStabilized}</li>
+          <li><strong data-translate="waterproof">Waterproof:</strong> ${product.waterproof}</li>
+          <li><strong data-translate="color">Color:</strong> ${product.color}</li>
+          ${product.tensileStrength ? `<li><strong data-translate="tensile_strength">Tensile Strength:</strong> ${product.tensileStrength}</li>` : ''}
+          ${product.flexibility ? `<li><strong data-translate="flexibility">Flexibility:</strong> ${product.flexibility}</li>` : ''}
+          ${product.layerStructure ? `<li><strong data-translate="layer_structure">Layer Structure:</strong> ${product.layerStructure}</li>` : ''}
+        </ul>
+      `;
+
+      // Applications
+      const applicationsSpecs = document.createElement('div');
+      applicationsSpecs.className = 'spec-card';
+      applicationsSpecs.innerHTML = `
+        <h4 data-translate="applications">Applications</h4>
+        <ul class="spec-list">
+          ${product.applications.map(app => `<li>${app}</li>`).join('')}
+        </ul>
+      `;
+
+      // Advantages
+      const advantagesSpecs = document.createElement('div');
+      advantagesSpecs.className = 'spec-card';
+      advantagesSpecs.innerHTML = `
+        <h4 data-translate="advantages">Advantages</h4>
+        <ul class="spec-list">
+          ${product.advantages.map(advantage => `<li>${advantage}</li>`).join('')}
+        </ul>
+      `;
+
+      specsContainer.appendChild(basicSpecs);
+      specsContainer.appendChild(applicationsSpecs);
+      specsContainer.appendChild(advantagesSpecs);
+
+      // Show product detail view
+      document.getElementById('productList').classList.remove('active');
+      document.getElementById('productDetail').classList.add('active');
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goBack() {
+      document.getElementById('productList').classList.add('active');
+      document.getElementById('productDetail').classList.remove('active');
+      const video = document.getElementById('detailVideo');
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById("theme-icon");
+      const isLight = html.dataset.theme === "light";
+      html.dataset.theme = isLight ? "dark" : "light";
+      localStorage.setItem("theme", html.dataset.theme);
+      icon.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+
+    function loadTheme() {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      document.documentElement.dataset.theme = savedTheme;
+      const icon = document.getElementById("theme-icon");
+      icon.innerHTML = savedTheme === "light" ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    }
+
+    function toggleMobileMenu() {
+      const mobileNav = document.getElementById('mobileNav');
+      mobileNav.classList.toggle('active');
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.mobile-menu')) {
+        document.getElementById('mobileNav').classList.remove('active');
+      }
+    });
+
+    // Add smooth scrolling for better UX
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Add loading animation for better UX
+    window.addEventListener('load', () => {
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+
+    // Add keyboard navigation support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('mobileNav').classList.remove('active');
+        
+        // Go back from product detail if active
+        if (document.getElementById('productDetail').classList.contains('active')) {
+          goBack();
+        }
+      }
+    });
+
+    // Add touch support for mobile
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartY = e.changedTouches[0].screenY;
+    });
+
+    document.addEventListener('touchend', (e) => {
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const swipeDistance = touchStartY - touchEndY;
+      
+      if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance > 0) {
+          // Swipe up - could add functionality here
+        } else {
+          // Swipe down - could add functionality here
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# VS Code settings
+.vscode/
